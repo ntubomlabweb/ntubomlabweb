@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics="">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="icon" type="image/png" href="assets/bomlab-logo.png">
+<title>生物光機電實驗室 BOmLab｜國立臺灣大學</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700;900&amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>body{margin:0;background:#f1efe8;color:#1c2735;font-family:'Noto Sans TC',system-ui,sans-serif}a{color:#2c4a6e;text-decoration:none}a:hover{color:#a3813a}</style>
+</helmet>
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#16283e"/><circle cx="50" cy="46" r="20" fill="none" stroke="#d9a86b" stroke-width="3"/><circle cx="50" cy="46" r="8" fill="#d9a86b"/><text x="50" y="82" font-family="serif" font-size="14" font-weight="900" fill="#f1efe8" text-anchor="middle">BOmLab</text></svg></template>
+
+<!-- ======= NAV ======= -->
+<div data-screen-label="導覽列" style="background:#16283e;color:#f1efe8;position:sticky;top:0;z-index:50">
+  <div style="max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 32px;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:12px;cursor:pointer;flex:none" onClick="{{ goHome }}">
+      <img src="assets/bomlab-logo.png" alt="BOmLab Logo" style="height:42px;width:auto;display:block">
+      <span style="font-size:12px;color:#d9a86b;white-space:nowrap">生物光機電實驗室</span>
+    </div>
+    <div style="display:flex;gap:6px;font-size:13px">
+      <sc-for list="{{ navItems }}" as="nv" hint-placeholder-count="7">
+        <span onClick="{{ nv.onClick }}" style="{{ nv.style }}" style-hover="background:rgba(217,168,107,.22);color:#ffffff;transform:translateY(-1px)">{{ nv.label }}</span>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<!-- ======= HOME ======= -->
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<div data-screen-label="首頁 Home">
+  <!-- hero -->
+  <div style="background:radial-gradient(circle at 84% 26%, rgba(217,168,107,0.18), transparent 44%), radial-gradient(circle at 10% 92%, rgba(90,150,220,0.15), transparent 48%), repeating-radial-gradient(circle at 86% 24%, rgba(255,255,255,0.05) 0 1px, transparent 1px 28px), radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px) 0 0 / 24px 24px, #16283e;color:#f1efe8;border-bottom:4px solid #d9a86b;position:relative;overflow:hidden">
+    <div style="max-width:1160px;margin:0 auto;padding:76px 32px 84px;position:relative;z-index:1">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.28em;color:#d9a86b;margin-bottom:16px">NTU · BIO-OPTOMECHATRONICS LAB</div>
+      <h1 style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:76px;line-height:1.14;margin:0">生物<span style="color:#d9a86b">光</span>機電<br>實驗室</h1>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding:28px 0 0;flex-wrap:wrap">
+        <div style="font-size:15px;line-height:1.85;color:#bcc9d9;max-width:460px">Bio-Optomechatronics Laboratory<br data-om-id="7c991142:27">Department of Biomechatronic Engineering, National Taiwan University&nbsp;</div>
+        <div style="display:flex;gap:10px">
+          <span onClick="{{ goContact }}" style="border:1px solid #d9a86b;color:#d9a86b;font-size:14px;padding:11px 22px;border-radius:999px;white-space:nowrap;cursor:pointer;transition:all .25s" style-hover="background:#d9a86b;color:#16283e;transform:translateY(-2px);box-shadow:0 8px 20px rgba(217,168,107,.35)">聯絡我們 Contact Us</span>
+          <span onClick="{{ goResearch }}" style="background:#d9a86b;color:#16283e;font-size:14px;font-weight:700;padding:11px 22px;border-radius:999px;white-space:nowrap;cursor:pointer;transition:all .25s" style-hover="transform:translateY(-2px);box-shadow:0 8px 20px rgba(217,168,107,.45)">Research →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- news -->
+  <div style="max-width:1160px;margin:0 auto;display:grid;grid-template-columns:220px 1fr;gap:36px;padding:64px 32px;border-bottom:1px solid #cbc8b8">
+    <div style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:28px;line-height:1.4">最新<br>消息<div style="font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:11px;letter-spacing:.2em;color:#a3813a;margin-top:8px">NEWS</div></div>
+    <div style="display:flex;flex-direction:column">
+      <div style="display:grid;grid-template-columns:400px 1fr;gap:32px;padding:8px 0 30px;border-top:2px solid #1c2735;padding-top:26px;align-items:start">
+        <div>
+          <div style="aspect-ratio:4/3;border-radius:8px;overflow:hidden;box-shadow:0 12px 30px rgba(22,40,62,.16)">
+            <img src="assets/photos/0150dc_b02026e134034611be70d6b8a5db137e-mv2.webp" alt="與中研院合作研究" style="width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#a3813a;margin-top:10px">FEATURED · SCIENCE ADVANCES 2025</div>
+        </div>
+        <div>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#a3813a">2025.03</span>
+          <div style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:26px;line-height:1.45;margin:8px 0 12px">與中研院合作研究<br>刊登於《Science Advances》</div>
+          <p style="font-size:15px;line-height:2;color:#4d5a6b;margin:0 0 18px">吳筱梅老師與中研院應科中心董奕鍾研究員合作，透過人類腦類器官模型結合多體學分析，揭示氧氣張力於早期腦部神經發育中的關鍵角色。Prof. Hsiao-Mei Wu collaborated with Dr. Yi-Chung Tung (Academia Sinica, RCAS) to reveal the pivotal role of oxygen tension in early neurodevelopment, published in <i>Science Advances</i>.</p>
+          <div style="display:flex;gap:22px;font-size:13px;flex-wrap:wrap">
+            <a href="https://www.science.org/doi/10.1126/sciadv.ado1164" target="_blank" style="border-bottom:1px solid #2c4a6e">論文 Paper →</a>
+            <a href="https://ord.ntu.edu.tw/w/ordntu/index_news_25033115154484542" target="_blank" style="border-bottom:1px solid #2c4a6e">臺大報導 NTU News →</a>
+            <a href="https://www.asiaresearchnews.com/content/uncovering-oxygen%E2%80%99s-key-role-brain-development" target="_blank" style="border-bottom:1px solid #2c4a6e">Asia Research News →</a>
+          </div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:100px 1fr auto;gap:20px;align-items:baseline;padding:18px 0;border-top:1px solid #cbc8b8">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:13px">2025.11</span>
+        <span style="font-size:15px;font-weight:500;line-height:1.7;color:#4d5a6b">KU、Hokkaido、SNU 教授團參訪實驗室（114-1 International Lab Tours）</span>
+        <span onClick="{{ goPhotos }}" style="font-size:12.5px;color:#2c4a6e;cursor:pointer">花絮 →</span>
+      </div>
+      <div style="display:grid;grid-template-columns:100px 1fr auto;gap:20px;align-items:baseline;padding:16px 0;border-top:1px solid #cbc8b8">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:13px">2025.06</span>
+        <span style="font-size:15px;font-weight:500;line-height:1.7;color:#4d5a6b">113-2 碩士生口試順利完成，恭喜畢業生！</span>
+        <span onClick="{{ goPhotos }}" style="font-size:12.5px;color:#2c4a6e;cursor:pointer">花絮 →</span>
+      </div>
+    </div>
+  </div>
+  <!-- photo slideshow -->
+  <div style="max-width:1160px;margin:0 auto;display:grid;grid-template-columns:220px 1fr;gap:36px;padding:56px 32px;border-bottom:1px solid #cbc8b8">
+    <div style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:28px;line-height:1.4">花絮<br>照片<div style="font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:11px;letter-spacing:.2em;color:#a3813a;margin-top:8px">GALLERY</div></div>
+    <div>
+      <div style="position:relative;border-radius:10px;overflow:hidden;background:#16283e">
+        <div style="overflow:hidden">
+          <div style="display:flex;width:1000%;transition:transform .55s cubic-bezier(.45,0,.15,1);transform:translateX(-{{ slideShift }})">
+            <sc-for list="{{ homeSlides }}" as="sl" hint-placeholder-count="10">
+              <div style="flex:0 0 10%;width:10%">
+                <div style="aspect-ratio:16/9;background:#0f1d30">
+                  {{ sl.imgEl }}
+                </div>
+                <div style="padding:16px 22px;color:#f1efe8;font-size:15px;line-height:1.7;font-weight:500;min-height:30px">{{ sl.cap }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <span onClick="{{ prevSlide }}" style="position:absolute;top:calc(50% - 22px);left:14px;width:44px;height:44px;border-radius:50%;background:rgba(22,40,62,.55);color:#f1efe8;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;transition:all .2s;backdrop-filter:blur(4px)" style-hover="background:#d9a86b;color:#16283e">←</span>
+        <span onClick="{{ nextSlide }}" style="position:absolute;top:calc(50% - 22px);right:14px;width:44px;height:44px;border-radius:50%;background:rgba(22,40,62,.55);color:#f1efe8;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;transition:all .2s;backdrop-filter:blur(4px)" style-hover="background:#d9a86b;color:#16283e">→</span>
+      </div>
+      <div style="display:flex;gap:9px;justify-content:center;margin-top:16px">
+        <sc-for list="{{ dots }}" as="d" hint-placeholder-count="10">
+          <button onClick="{{ d.onClick }}" style="{{ d.style }}"></button>
+        </sc-for>
+      </div>
+      <div onClick="{{ goPhotos }}" style="display:inline-block;margin-top:20px;font-size:13.5px;color:#2c4a6e;border-bottom:1px solid #2c4a6e;cursor:pointer;transition:all .2s" style-hover="color:#a3813a;border-bottom:1px solid #a3813a;transform:translateX(4px)">看更多花絮 More Photos →</div>
+    </div>
+  </div>
+  <!-- research preview -->
+  <div style="max-width:1160px;margin:0 auto;display:grid;grid-template-columns:220px 1fr;gap:36px;padding:52px 32px">
+    <div style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:28px;line-height:1.4">研究<br>領域<div style="font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:11px;letter-spacing:.2em;color:#a3813a;margin-top:8px">RESEARCH</div></div>
+    <div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 40px">
+        <div style="display:flex;gap:16px;align-items:baseline;padding:18px 0;border-top:2px solid #1c2735"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#a3813a">01</span><div><div style="font-weight:700;font-size:17px">螢光壽命與成像</div><div style="font-size:12.5px;color:#7d8494">Fluorescence Lifetime &amp; Imaging</div></div></div>
+        <div style="display:flex;gap:16px;align-items:baseline;padding:18px 0;border-top:2px solid #1c2735"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#a3813a">02</span><div><div style="font-weight:700;font-size:17px">細胞分割・追蹤・培養</div><div style="font-size:12.5px;color:#7d8494">Cell Segmentation, Tracking &amp; Culture</div></div></div>
+        <div style="display:flex;gap:16px;align-items:baseline;padding:18px 0;border-top:1px solid #cbc8b8"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#a3813a">03</span><div><div style="font-weight:700;font-size:17px">樂高顯微鏡・LEMOLish</div><div style="font-size:12.5px;color:#7d8494">LEGO Microscope &amp; Light-Sheet</div></div></div>
+        <div style="display:flex;gap:16px;align-items:baseline;padding:18px 0;border-top:1px solid #cbc8b8"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#a3813a">04</span><div><div style="font-weight:700;font-size:17px">三維植物表型・電子鼻</div><div style="font-size:12.5px;color:#7d8494">3D Plant Phenotyping &amp; E-Nose</div></div></div>
+      </div>
+      <div onClick="{{ goResearch }}" style="display:inline-block;margin-top:18px;font-size:13.5px;color:#2c4a6e;border-bottom:1px solid #2c4a6e;cursor:pointer;transition:all .2s" style-hover="color:#a3813a;border-bottom:1px solid #a3813a;transform:translateX(4px)">看全部研究主題 All Research Topics →</div>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<!-- ======= PROFESSOR ======= -->
+<sc-if value="{{ isProf }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="教授 Professor">
+  <div style="background:repeating-radial-gradient(circle at 90% 28%, rgba(217,168,107,0.07) 0 1px, transparent 1px 30px), radial-gradient(circle at 88% 22%, rgba(217,168,107,0.16), transparent 46%), radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px) 0 0 / 22px 22px, #16283e;color:#f1efe8;position:relative;overflow:hidden">
+    <div style="max-width:1160px;margin:0 auto;padding:44px 32px 40px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.24em;color:#d9a86b;margin-bottom:10px">PROFESSOR</div>
+      <h1 style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:44px;margin:0">教授資訊</h1>
+    </div>
+  </div>
+  <div style="max-width:1160px;margin:0 auto;display:grid;grid-template-columns:340px 1fr;gap:48px;padding:52px 32px;align-items:start">
+    <div>
+      <div style="width:220px;height:220px;margin-bottom:22px;border-radius:50%;overflow:hidden;background:#e7e3d6">
+        <img src="assets/photos/prof-portrait.jpg" alt="吳筠梅 Dr. Hsiao-Mei Wu" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+      <h2 style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:26px;margin:0 0 4px">吳筱梅</h2>
+      <div style="font-size:15px;color:#a3813a;margin-bottom:18px">Dr. Hsiao-Mei Wu</div>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:13.5px;line-height:1.7;color:#4d5a6b;border-top:2px solid #1c2735;padding-top:16px">
+        <div><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#a3813a">AFFILIATION</span><br>Department of Biomechatronics Engineering,<br>National Taiwan University, Taipei 10617, Taiwan</div>
+        <div><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#a3813a">TEL</span><br>+886-2-3366-5350</div>
+        <div><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#a3813a">EMAIL</span><br><a href="mailto:hsmwu@ntu.edu.tw">hsmwu@ntu.edu.tw</a></div>
+        <div><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#a3813a">PUBLICATIONS</span><br><span onClick="{{ goPubs }}" style="border-bottom:1px solid #2c4a6e;color:#2c4a6e;cursor:pointer;transition:all .2s" style-hover="color:#a3813a;border-bottom:1px solid #a3813a">研究著作 Research Publications →</span></div>
+      </div>
+    </div>
+    <div>
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:6px">
+        <h2 style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:24px;margin:0">經驗與學歷</h2>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:#a3813a">EXPERIENCE &amp; EDUCATION</span>
+      </div>
+      <div style="display:flex;flex-direction:column">
+        <sc-for list="{{ timeline }}" as="tl" hint-placeholder-count="8">
+          <div style="display:grid;grid-template-columns:130px 1fr;gap:22px;padding:15px 0;border-top:1px solid #cbc8b8">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#a3813a">{{ tl.year }}</span>
+            <div><div style="font-weight:700;font-size:15.5px;line-height:1.5">{{ tl.role }}</div><div style="font-size:13px;color:#7d8494;margin-top:2px">{{ tl.org }}</div></div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<!-- ======= RESEARCH ======= -->
+<sc-if value="{{ isResearch }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="研究領域 Research">
+  <div style="background:repeating-radial-gradient(circle at 85% 50%, rgba(120,180,230,0.08) 0 1px, transparent 1px 24px), radial-gradient(circle at 86% 24%, rgba(217,168,107,0.15), transparent 44%), radial-gradient(circle at 8% 92%, rgba(90,150,220,0.14), transparent 50%), #16283e;color:#f1efe8;position:relative;overflow:hidden">
+    <div style="max-width:1160px;margin:0 auto;padding:44px 32px 40px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.24em;color:#d9a86b;margin-bottom:10px">RESEARCH AREAS</div>
+      <h1 style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:44px;margin:0">研究領域</h1>
+    </div>
+  </div>
+  <div style="max-width:1160px;margin:0 auto;padding:52px 32px">
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:36px 40px">
+      <sc-for list="{{ researchTopics }}" as="rt" hint-placeholder-count="8">
+        <div style="border-top:2px solid #1c2735;padding-top:16px;transition:all .3s" style-hover="transform:translateY(-5px);border-top:2px solid #d9a86b">
+          <div style="display:flex;gap:14px;align-items:baseline;margin-bottom:14px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#a3813a">{{ rt.num }}</span>
+            <div><div style="font-weight:700;font-size:18px">{{ rt.zh }}</div><div style="font-size:12.5px;color:#7d8494">{{ rt.en }}</div></div>
+          </div>
+          <div style="aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:#e7e3d6">
+            <sc-if value="{{ rt.hasImg }}" hint-placeholder-val="{{ false }}">{{ rt.imgEl }}</sc-if>
+            <sc-if value="{{ rt.noImg }}" hint-placeholder-val="{{ true }}"><image-slot id="{{ rt.slot }}" shape="rounded" radius="6" placeholder="{{ rt.ph }}"></image-slot></sc-if>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<!-- ======= MEMBERS ======= -->
+<sc-if value="{{ isMembers }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="實驗室成員 Members">
+  <div style="background:radial-gradient(circle at 88% 20%, rgba(217,168,107,0.15), transparent 45%), radial-gradient(circle at 8% 92%, rgba(90,150,220,0.13), transparent 50%), radial-gradient(rgba(255,255,255,0.06) 2px, transparent 2px) 0 0 / 34px 34px, #16283e;color:#f1efe8;position:relative;overflow:hidden">
+    <div style="max-width:1160px;margin:0 auto;padding:44px 32px 40px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.24em;color:#d9a86b;margin-bottom:10px">LAB MEMBERS</div>
+      <h1 style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:44px;margin:0">實驗室成員</h1>
+    </div>
+  </div>
+  <div style="max-width:1160px;margin:0 auto;padding:48px 32px">
+    <sc-for list="{{ memberGroups }}" as="grp" hint-placeholder-count="4">
+      <div style="margin-bottom:44px">
+        <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:16px;border-bottom:2px solid #1c2735;padding-bottom:10px">
+          <h2 style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:22px;margin:0">{{ grp.title }}</h2>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:#a3813a">{{ grp.en }}</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px 40px">
+          <sc-for list="{{ grp.items }}" as="mb" hint-placeholder-count="4">
+            <div onClick="{{ mb.onClick }}" style="display:grid;grid-template-columns:76px 1fr auto;gap:18px;align-items:center;padding:14px 12px;border-top:1px solid #cbc8b8;border-radius:8px;cursor:pointer;transition:all .22s" style-hover="background:#ffffff;box-shadow:0 8px 22px rgba(22,40,62,.12);transform:translateY(-2px)">
+              <div style="width:76px;height:76px">
+                {{ mb.imgEl }}
+              </div>
+              <div>
+                <div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap">
+                  <span style="font-weight:700;font-size:16px">{{ mb.name }}</span>
+                  <span style="font-size:12px;color:#7d8494">{{ mb.en }}</span>
+                </div>
+                <div style="font-size:12.5px;color:#2c4a6e;margin-top:4px;line-height:1.5">{{ mb.topic }}</div>
+              </div>
+              <span style="font-size:15px;color:#a3813a;transition:transform .2s" style-hover="transform:translateX(3px)">→</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</sc-if>
+
+<!-- ======= MEMBER DETAIL ======= -->
+<sc-if value="{{ isMember }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="成員介紹 Member Profile">
+  <div style="background:radial-gradient(circle at 18% 45%, rgba(217,168,107,0.15), transparent 42%), radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px) 0 0 / 22px 22px, #16283e;color:#f1efe8;position:relative;overflow:hidden">
+    <div style="max-width:1000px;margin:0 auto;padding:44px 32px 40px">
+      <span onClick="{{ goMemberBack }}" style="display:inline-block;margin-bottom:18px;font-size:13px;color:#bcc9d9;cursor:pointer;border-bottom:1px solid #bcc9d9;transition:all .2s" style-hover="color:#d9a86b;border-bottom:1px solid #d9a86b">← 回實驗室成員 Members</span>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.24em;color:#d9a86b;margin-bottom:10px">MEMBER PROFILE</div>
+      <h1 style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:40px;margin:0">{{ currentMember.name }}</h1>
+      <div style="font-size:15px;color:#bcc9d9;margin-top:8px">{{ currentMember.en }}</div>
+    </div>
+  </div>
+  <div style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:300px 1fr;gap:48px;padding:52px 32px;align-items:start">
+    <div>
+      <div style="border-radius:12px;overflow:hidden;background:#e7e3d6;box-shadow:0 12px 30px rgba(22,40,62,.16)">
+        {{ currentMember.imgEl }}
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;font-size:13px;line-height:1.7;color:#4d5a6b;border-top:2px solid #1c2735;padding-top:16px;margin-top:20px">
+        <div><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#a3813a">身分 ROLE</span><br>{{ currentMember.role }}</div>
+        <div><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#a3813a">研究主題 TOPIC</span><br>{{ currentMember.topic }}</div>
+        <div><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#a3813a">EMAIL</span><br><a href="mailto:example@ntu.edu.tw">example@ntu.edu.tw</a></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:34px">
+      <div>
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:12px;border-bottom:2px solid #1c2735;padding-bottom:8px"><h2 style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:20px;margin:0">自我介紹</h2><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:#a3813a">ABOUT ME</span></div>
+        <p style="font-size:14.5px;line-height:2;color:#4d5a6b;margin:0">在此撰寫自我介紹，例如研究興趣、加入實驗室的契機、專長與目標等。（此處內容待補充）</p>
+      </div>
+      <div>
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:12px;border-bottom:2px solid #1c2735;padding-bottom:8px"><h2 style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:20px;margin:0">研究領域</h2><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:#a3813a">RESEARCH INTERESTS</span></div>
+        <p style="font-size:14.5px;line-height:2;color:#4d5a6b;margin:0">列出研究領域與關鍵字。（此處內容待補充）</p>
+      </div>
+      <div>
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:12px;border-bottom:2px solid #1c2735;padding-bottom:8px"><h2 style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:20px;margin:0">學歷</h2><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:#a3813a">EDUCATION</span></div>
+        <ul style="font-size:14.5px;line-height:1.9;color:#4d5a6b;margin:0;padding-left:20px"><li>學年 – 學年：學位／學校／地點（此處內容待補充）</li><li>學年 – 學年：學位／學校／地點</li></ul>
+      </div>
+      <div>
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:12px;border-bottom:2px solid #1c2735;padding-bottom:8px"><h2 style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:20px;margin:0">經歷</h2><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:#a3813a">EXPERIENCE</span></div>
+        <ul style="font-size:14.5px;line-height:1.9;color:#4d5a6b;margin:0;padding-left:20px"><li>年份：職稱／單位（此處內容待補充）</li><li>年份：職稱／單位</li></ul>
+      </div>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<!-- ======= COURSES ======= -->
+<sc-if value="{{ isCourses }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="開設課程 Courses">
+  <div style="background:repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 40px), repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 40px), radial-gradient(circle at 86% 24%, rgba(217,168,107,0.15), transparent 46%), #16283e;color:#f1efe8;position:relative;overflow:hidden">
+    <div style="max-width:1160px;margin:0 auto;padding:44px 32px 40px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.24em;color:#d9a86b;margin-bottom:10px">COURSES</div>
+      <h1 style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:44px;margin:0">開設課程</h1>
+    </div>
+  </div>
+  <div style="max-width:1160px;margin:0 auto;padding:48px 32px;display:flex;flex-direction:column">
+    <sc-for list="{{ courses }}" as="cs" hint-placeholder-count="4">
+      <div style="display:grid;grid-template-columns:60px 260px 1fr auto;gap:26px;align-items:center;padding:24px 16px;border-top:1px solid #cbc8b8;border-radius:8px;transition:background .25s" style-hover="background:rgba(22,40,62,.05)">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#a3813a">{{ cs.num }}</span>
+          <div style="aspect-ratio:3/2;border-radius:6px;overflow:hidden">
+          {{ cs.imgEl }}
+        </div>
+        <div>
+          <div style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:21px;margin-bottom:3px">{{ cs.zh }}</div>
+          <div style="font-size:13.5px;color:#7d8494">{{ cs.en }}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+          <span style="background:#16283e;color:#d9a86b;font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:5px 12px;border-radius:999px;white-space:nowrap">{{ cs.sem }}</span>
+          <a href="{{ cs.url }}" target="_blank" style="font-size:12.5px;border-bottom:1px solid #2c4a6e;white-space:nowrap">臺大課程網 →</a>
+          <sc-if value="{{ cs.extra }}" hint-placeholder-val="{{ false }}">
+            <a href="{{ cs.extraUrl }}" target="_blank" style="font-size:12.5px;border-bottom:1px solid #2c4a6e;white-space:nowrap">課程花絮 →</a>
+          </sc-if>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</sc-if>
+
+<!-- ======= PHOTOS ======= -->
+<sc-if value="{{ isPhotos }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="活動花絮 Photos">
+  <div style="background:repeating-linear-gradient(45deg, rgba(255,255,255,0.045) 0 2px, transparent 2px 18px), radial-gradient(circle at 88% 22%, rgba(217,168,107,0.15), transparent 45%), radial-gradient(circle at 8% 90%, rgba(90,150,220,0.13), transparent 50%), #16283e;color:#f1efe8;position:relative;overflow:hidden">
+    <div style="max-width:1160px;margin:0 auto;padding:44px 32px 40px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.24em;color:#d9a86b;margin-bottom:10px">EVENT PHOTOS</div>
+      <h1 style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:44px;margin:0">活動花絮</h1>
+    </div>
+  </div>
+  <div style="max-width:1160px;margin:0 auto;padding:48px 32px">
+    <div style="column-count:3;column-gap:24px">
+      <sc-for list="{{ events }}" as="ev" hint-placeholder-count="9">
+        <div style="break-inside:avoid;margin-bottom:28px;transition:transform .3s" style-hover="transform:translateY(-6px)">
+          <div style="border-radius:6px;overflow:hidden;background:#e7e3d6;transition:box-shadow .3s" style-hover="box-shadow:0 14px 30px rgba(22,40,62,.22)">
+            {{ ev.imgEl }}
+          </div>
+          <div style="display:flex;gap:10px;align-items:baseline;margin-top:10px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#a3813a;white-space:nowrap">{{ ev.sem }}</span>
+            <span style="font-size:14px;font-weight:500;line-height:1.5">{{ ev.label }}</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<!-- ======= PUBLICATIONS ======= -->
+<sc-if value="{{ isPubs }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="研究著作 Publications">
+  <div style="background:repeating-linear-gradient(0deg, rgba(255,255,255,0.055) 0 1px, transparent 1px 22px), radial-gradient(circle at 88% 24%, rgba(217,168,107,0.15), transparent 46%), #16283e;color:#f1efe8;position:relative;overflow:hidden">
+    <div style="max-width:1160px;margin:0 auto;padding:44px 32px 40px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.24em;color:#d9a86b;margin-bottom:10px">RESEARCH PUBLICATIONS</div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap">
+        <h1 style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:44px;margin:0">研究著作</h1>
+        <span onClick="{{ goProf }}" style="font-size:13px;color:#bcc9d9;cursor:pointer;border-bottom:1px solid #bcc9d9;transition:all .2s" style-hover="color:#d9a86b;border-bottom:1px solid #d9a86b">← 回教授資訊 Professor</span>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1160px;margin:0 auto;padding:48px 32px;display:flex;flex-direction:column;gap:48px">
+    <div>
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px;border-bottom:2px solid #1c2735;padding-bottom:10px">
+        <h2 style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:24px;margin:0">期刊論文</h2>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:#a3813a">ARCHIVAL JOURNAL</span>
+      </div>
+      <div style="display:flex;flex-direction:column">
+        <sc-for list="{{ pubJournals }}" as="pb" hint-placeholder-count="16">
+          <div style="display:grid;grid-template-columns:46px 1fr;gap:18px;padding:14px 10px;border-top:1px solid #cbc8b8;border-radius:6px;transition:background .25s" style-hover="background:rgba(22,40,62,.05)">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#a3813a">{{ pb.num }}</span>
+            <div>
+              <div style="font-size:14px;line-height:1.85;color:#1c2735">{{ pb.text }}</div>
+              <sc-if value="{{ pb.note }}" hint-placeholder-val="{{ false }}">
+                <div style="display:inline-block;margin-top:6px;font-size:11.5px;color:#a3813a;border:1px solid #d9a86b;border-radius:999px;padding:3px 10px">{{ pb.note }}</div>
+              </sc-if>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div>
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px;border-bottom:2px solid #1c2735;padding-bottom:10px">
+        <h2 style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:24px;margin:0">專書章節</h2>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:#a3813a">BOOKS / BOOK CHAPTERS</span>
+      </div>
+      <div style="display:flex;flex-direction:column">
+        <sc-for list="{{ pubBooks }}" as="pb" hint-placeholder-count="1">
+          <div style="display:grid;grid-template-columns:46px 1fr;gap:18px;padding:14px 10px;border-top:1px solid #cbc8b8;border-radius:6px;transition:background .25s" style-hover="background:rgba(22,40,62,.05)">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#a3813a">{{ pb.num }}</span>
+            <div style="font-size:14px;line-height:1.85;color:#1c2735">{{ pb.text }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div>
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px;border-bottom:2px solid #1c2735;padding-bottom:10px">
+        <h2 style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:24px;margin:0">研討會論文與發表</h2>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:#a3813a">CONFERENCE PAPERS / PRESENTATIONS</span>
+      </div>
+      <div style="display:flex;flex-direction:column">
+        <sc-for list="{{ pubConfs }}" as="pb" hint-placeholder-count="41">
+          <div style="display:grid;grid-template-columns:46px 1fr;gap:18px;padding:14px 10px;border-top:1px solid #cbc8b8;border-radius:6px;transition:background .25s" style-hover="background:rgba(22,40,62,.05)">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#a3813a">{{ pb.num }}</span>
+            <div>
+              <div style="font-size:14px;line-height:1.85;color:#1c2735">{{ pb.text }}</div>
+              <sc-if value="{{ pb.note }}" hint-placeholder-val="{{ false }}">
+                <div style="display:inline-block;margin-top:6px;font-size:11.5px;color:#a3813a;border:1px solid #d9a86b;border-radius:999px;padding:3px 10px">{{ pb.note }}</div>
+              </sc-if>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<!-- ======= CONTACT ======= -->
+<sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="聯絡我們 Contact">
+  <div style="background:repeating-linear-gradient(0deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 30px), repeating-linear-gradient(90deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 30px), radial-gradient(circle at 84% 58%, rgba(217,168,107,0.2), transparent 26%), radial-gradient(circle at 84% 58%, rgba(217,168,107,0.1), transparent 44%), #16283e;color:#f1efe8;position:relative;overflow:hidden">
+    <div style="max-width:1160px;margin:0 auto;padding:44px 32px 40px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.24em;color:#d9a86b;margin-bottom:10px">CONTACT US</div>
+      <h1 style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:44px;margin:0">聯絡我們</h1>
+    </div>
+  </div>
+  <div style="max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:44px;padding:52px 32px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:30px">
+      <div style="border-top:2px solid #1c2735;padding-top:18px">
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:12px">
+          <h2 style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:21px;margin:0">實驗室</h2>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:#a3813a">LABORATORY</span>
+        </div>
+        <div style="font-size:14px;line-height:2;color:#4d5a6b">
+          位置：生機系二館（生機新館）Lab 303<br>
+          電話：02-3366-3366 #56218<br>
+          Bioengineering Building II, Lab 303
+        </div>
+      </div>
+      <div style="border-top:2px solid #1c2735;padding-top:18px">
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:12px">
+          <h2 style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:21px;margin:0">教授辦公室</h2>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:#a3813a">PROFESSOR'S OFFICE</span>
+        </div>
+        <div style="font-size:14px;line-height:2;color:#4d5a6b">
+          位置：農機館 Office 312<br>
+          電話：02-3366-3366 #65350<br>
+          Email：<a href="mailto:hsmwu@ntu.edu.tw">hsmwu@ntu.edu.tw</a><br>
+          Agricultural Machinery Building, Office 312
+        </div>
+      </div>
+      <div style="border-top:2px solid #1c2735;padding-top:18px">
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:12px">
+          <h2 style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:21px;margin:0">臺大地址</h2>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:#a3813a">ADDRESS</span>
+        </div>
+        <div style="font-size:14px;line-height:2;color:#4d5a6b">
+          106 台北市大安區羅斯福路四段一號<br>
+          No. 1, Sec. 4, Roosevelt Rd., Da'an Dist., Taipei City 10617, Taiwan
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div>
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:8px"><span style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:16px">實驗室</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#a3813a">LABORATORY · 生機系二館 Lab 303</span></div>
+        <div style="aspect-ratio:16/10;border-radius:6px;overflow:hidden;border:1px solid #cbc8b8">
+          <iframe src="https://maps.google.com/maps?q=25.0186313,121.542793&z=18&hl=zh-TW&output=embed" style="width:100%;height:100%;border:0;display:block" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="實驗室位置 生機系二館"></iframe>
+        </div>
+      </div>
+      <div>
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:8px"><span style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:16px">教授辦公室</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#a3813a">PROFESSOR'S OFFICE · 農機館 Office 312</span></div>
+        <div style="aspect-ratio:16/10;border-radius:6px;overflow:hidden;border:1px solid #cbc8b8">
+          <iframe src="https://maps.google.com/maps?q=25.0179614,121.542792&z=18&hl=zh-TW&output=embed" style="width:100%;height:100%;border:0;display:block" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="教授辦公室位置 農機館"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<!-- ======= FOOTER ======= -->
+<div data-screen-label="頁尾" style="background:#101a29;color:#a9b4c4">
+  <div style="max-width:1160px;margin:0 auto;padding:48px 32px 34px">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
+      <div style="display:flex;flex-direction:column;gap:13px;min-width:280px">
+        <img src="assets/bomlab-logo.png" alt="BOmLab" style="height:50px;width:auto;display:block;align-self:flex-start;flex:none;object-fit:contain">
+        <div style="font-family:'Noto Serif TC',serif;font-weight:700;font-size:16px;color:#f1efe8">生物光機電實驗室 Bio-Optomechatronics Lab</div>
+        <div style="font-size:12.5px;line-height:1.9">國立臺灣大學 生物機電工程學系<br>生機系二館（生機新館）Lab 303，台北市大安區羅斯福路四段一號</div>
+        <div style="display:flex;gap:20px;font-size:12.5px;margin-top:2px">
+          <a href="mailto:hsmwu@ntu.edu.tw" style="color:#a9b4c4;border-bottom:1px solid rgba(169,180,196,.4)">Email</a>
+          <span onClick="{{ goContact }}" style="cursor:pointer;color:#d9a86b;border-bottom:1px solid rgba(217,168,107,.5)">聯絡我們 Contact Us</span>
+        </div>
+      </div>
+      <div style="background:#f1efe8;border-radius:14px;padding:16px 20px;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(0,0,0,.25)">
+        <img src="assets/ntu-crest.png" alt="國立臺灣大學 National Taiwan University" style="height:104px;width:auto;display:block">
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(169,180,196,.18);margin-top:32px;padding-top:18px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;font-size:11.5px;color:#7d8494">
+      <span>© 2026 BOmLab — Bio-Optomechatronics Laboratory, National Taiwan University. All rights reserved.</span>
+      <div style="display:flex;gap:18px">
+        <span onClick="{{ goHome }}" style="cursor:pointer;color:#a9b4c4;transition:color .2s" style-hover="color:#d9a86b">首頁 Home</span>
+        <span onClick="{{ goResearch }}" style="cursor:pointer;color:#a9b4c4;transition:color .2s" style-hover="color:#d9a86b">研究 Research</span>
+        <span onClick="{{ goMembers }}" style="cursor:pointer;color:#a9b4c4;transition:color .2s" style-hover="color:#d9a86b">成員 Members</span>
+        <span onClick="{{ goContact }}" style="cursor:pointer;color:#a9b4c4;transition:color .2s" style-hover="color:#d9a86b">聯絡 Contact</span>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showGraduated&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;成員頁 Members&quot;}}">
+class Component extends DCLogic {
+  state = { page: 'home', slideIdx: 0, selectedMember: null };
+
+  componentDidMount() {
+    try {
+      const p = localStorage.getItem('bomlab-page');
+      if (p && ['home','prof','research','members','courses','photos','contact','pubs','member'].includes(p)) {
+        this.setState({ page: p });
+        if (p === 'member') {
+          const mk = localStorage.getItem('bomlab-member');
+          if (mk) this.setState({ selectedMember: mk });
+        }
+      }
+    } catch (e) {}
+  }
+
+  go(key) {
+    this.setState({ page: key });
+    try { localStorage.setItem('bomlab-page', key); } catch (e) {}
+    try { window.scrollTo(0, 0); } catch (e) {}
+  }
+
+  moveSlide(dir) {
+    const n = this._slideCount || 1;
+    this.setState(s => ({ slideIdx: (s.slideIdx + dir + n) % n }));
+  }
+
+  goMember(key) {
+    this.setState({ page: 'member', selectedMember: key });
+    try { localStorage.setItem('bomlab-page', 'member'); localStorage.setItem('bomlab-member', key); } catch (e) {}
+    try { window.scrollTo(0, 0); } catch (e) {}
+  }
+
+  orbSetup(el) {
+    if (!el) { if (this._orbRAF) { cancelAnimationFrame(this._orbRAF); this._orbRAF = null; } this._orbCanvas = null; return; }
+    if (this._orbCanvas === el && this._orbRAF) return;
+    if (this._orbRAF) cancelAnimationFrame(this._orbRAF);
+    this._orbCanvas = el;
+    const ctx = el.getContext('2d');
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let t = 0;
+    const TAU = Math.PI * 2;
+    const blob = (cx, cy, r, col) => {
+      const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+      g.addColorStop(0, col); g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, r, 0, TAU); ctx.fill();
+    };
+    const draw = () => {
+      const w = el.clientWidth, h = el.clientHeight;
+      if (!w || !h) { this._orbRAF = requestAnimationFrame(draw); return; }
+      if (el.width !== Math.round(w * dpr)) { el.width = Math.round(w * dpr); el.height = Math.round(h * dpr); }
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, w, h);
+      t += 0.005;
+      const cx = w > 760 ? w * 0.76 : w * 0.5;
+      const cy = h * 0.5;
+      const R = Math.min(h * 0.62, w * 0.32, 220);
+      blob(cx, cy, R * 1.9, 'rgba(90,150,220,0.16)');
+      ctx.save();
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, TAU); ctx.clip();
+      const base = ctx.createRadialGradient(cx - R * 0.3, cy - R * 0.35, R * 0.1, cx, cy, R);
+      base.addColorStop(0, '#3a5f86'); base.addColorStop(0.6, '#1d3a5c'); base.addColorStop(1, '#0c1c30');
+      ctx.fillStyle = base; ctx.fillRect(cx - R, cy - R, 2 * R, 2 * R);
+      ctx.globalCompositeOperation = 'screen';
+      blob(cx + Math.cos(t) * R * 0.4, cy + Math.sin(t * 1.1) * R * 0.35, R * 0.85, 'rgba(217,168,107,0.55)');
+      blob(cx + Math.cos(t * 1.3 + 2) * R * 0.45, cy + Math.sin(t * 0.9 + 1) * R * 0.4, R * 0.7, 'rgba(80,180,200,0.42)');
+      blob(cx + Math.cos(t * 0.7 + 4) * R * 0.35, cy + Math.sin(t * 1.4 + 3) * R * 0.3, R * 0.6, 'rgba(150,120,220,0.4)');
+      blob(cx + Math.cos(-t * 1.1) * R * 0.3, cy + Math.sin(-t) * R * 0.42, R * 0.5, 'rgba(245,225,185,0.42)');
+      ctx.globalCompositeOperation = 'source-over';
+      blob(cx - R * 0.34, cy - R * 0.4, R * 0.55, 'rgba(255,255,255,0.34)');
+      ctx.restore();
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, TAU); ctx.lineWidth = 1.5; ctx.strokeStyle = 'rgba(200,220,255,0.22)'; ctx.stroke();
+      this._orbRAF = requestAnimationFrame(draw);
+    };
+    this._orbRAF = requestAnimationFrame(draw);
+  }
+
+  renderVals() {
+    const page = this.state.page;
+    const showGraduated = this.props.showGraduated ?? true;
+
+    const homeSlides = [
+      { slot: 'home-slide-1', cap: '114-1 導生宴', img: 'assets/photos/0150dc_b7b11e0f139c452883095c9e8e193998-mv2.png' },
+      { slot: 'home-slide-2', cap: '114-1 KU Professors Lab Tour', img: 'assets/photos/0150dc_649a79d9165f4f14892988359913b5ee-mv2.png' },
+      { slot: 'home-slide-3', cap: '114-1 Hokkaido University Professors Lab Tour', img: 'assets/photos/0150dc_4f87cd7116474af596f0bf657cfecf1d-mv2.png' },
+      { slot: 'home-slide-4', cap: '114-1 SNU Professors Lab Tour', img: 'assets/photos/0150dc_f77ca05f6e244bfdb0688f56a17dbe61-mv2.png' },
+      { slot: 'home-slide-5', cap: '114 教師節', img: 'assets/photos/0150dc_361b8c6ee63f4f3786dcc34245e2fbf1-mv2.png' },
+      { slot: 'home-slide-6', cap: '113-2 碩士生口試', img: 'assets/photos/0150dc_ed72f3b291d94cbea522534a9987cbdc-mv2.png' },
+      { slot: 'home-slide-7', cap: '113-2 謝師宴', img: 'assets/photos/0150dc_abd2d4a5494e4fdca3a135a8270bd9d4-mv2.png' },
+      { slot: 'home-slide-8', cap: '113-2 UIUC 研討會前合影', img: 'assets/photos/0150dc_64220b2e814f44b6a68c73487dd11c46-mv2.png' },
+      { slot: 'home-slide-9', cap: '113-1 導生聚', img: 'assets/photos/0150dc_94f3a22bed1a413cb06e807843792594-mv2.png' },
+      { slot: 'home-slide-10', cap: '112-2 畢業生', img: 'assets/photos/0150dc_04116ae408d043bd809d05ad7dd09477-mv2.png' },
+    ];
+    this._slideCount = homeSlides.length;
+    const slideIdx = this.state.slideIdx;
+    const slideShift = (slideIdx * (100 / homeSlides.length)) + '%';
+    const dots = homeSlides.map((s, i) => ({
+      onClick: () => this.setState({ slideIdx: i }),
+      style: {
+        width: '9px', height: '9px', borderRadius: '50%', cursor: 'pointer',
+        transition: 'all .25s', border: 'none', padding: 0,
+        background: i === slideIdx ? '#d9a86b' : '#c7c2b2',
+        transform: i === slideIdx ? 'scale(1.25)' : 'scale(1)',
+      },
+    }));
+
+    const navDefs = [
+      ['home', '首頁 Home'],
+      ['prof', '教授 Professor'],
+      ['research', '研究 Research'],
+      ['members', '成員 Members'],
+      ['courses', '課程 Courses'],
+      ['photos', '花絮 Photos'],
+      ['contact', '聯絡 Contact'],
+    ];
+    const navItems = navDefs.map(([key, label]) => ({
+      key, label,
+      onClick: () => this.go(key),
+      style: {
+        padding: '8px 13px', cursor: 'pointer', whiteSpace: 'nowrap', borderRadius: '999px',
+        transition: 'all .2s',
+        color: page === key ? '#16283e' : (key === 'contact' ? '#d9a86b' : '#bcc9d9'),
+        background: page === key ? '#d9a86b' : 'transparent',
+        fontWeight: page === key ? 700 : 400,
+      },
+    }));
+
+    const timeline = [
+      { year: '2022–現在', role: 'Assistant Professor 助理教授', org: 'Department of Biomechatronics Engineering, National Taiwan University' },
+      { year: '2016–2022', role: 'Postdoctoral Research Fellow', org: 'Research Center for Applied Sciences, Academia Sinica' },
+      { year: '2015–2016', role: 'Assistant Research Fellow', org: 'National Chung-Shan Institute of Science and Technology' },
+      { year: '2014–2015', role: 'Postdoctoral Research Fellow', org: 'Institute of Atomic and Molecular Sciences, Academia Sinica' },
+      { year: '2009–2014', role: 'Ph.D. in Mechanical Engineering', org: 'Brown University' },
+      { year: '2008–2009', role: 'M.Sc. in Mechanical Engineering (Solid Mechanics)', org: 'Brown University' },
+      { year: '2005–2007', role: 'M.Sc. in Structural Engineering & Structural Mechanics', org: 'University of Illinois at Urbana-Champaign' },
+      { year: '2000–2004', role: 'B.Sc. in Civil Engineering', org: 'National Taiwan University' },
+    ];
+
+    const researchTopics = [
+      { num: '01', zh: '螢光壽命', en: 'Fluorescence Lifetime', slot: 'rs-flim', ph: 'FLIM 成果圖', img: 'assets/photos/0150dc_c420c95c579847888744c7880d743f17-mv2.png' },
+      { num: '02', zh: '螢光成像', en: 'Fluorescence Imaging', slot: 'rs-fimg', ph: '螢光成像圖', img: 'assets/photos/0150dc_2fd3095de5504b48adfe1137b79ab8e7-mv2.png' },
+      { num: '03', zh: '細胞分割與追蹤', en: 'Cell Segmentation & Tracking', slot: 'rs-cell', ph: '細胞分割/追蹤圖', img: 'assets/photos/cell_segmentation.png' },
+      { num: '04', zh: '細胞培養', en: 'Cell Culture', slot: 'rs-culture', ph: '細胞培養照片', img: 'assets/photos/cell_culture.png' },
+      { num: '05', zh: '樂高顯微鏡', en: 'LEGO Microscope', slot: 'rs-lego', ph: '樂高顯微鏡照片', img: 'assets/photos/0150dc_18728f50adac4940b8a90c96919a9827-mv2.png' },
+      { num: '06', zh: 'LEMOLish 樂高光片顯微鏡', en: 'LEGO Light-Sheet Microscope', slot: 'rs-lemolish', ph: 'LEMOLish 照片', img: 'assets/photos/0150dc_5d3bef575dee470c9f28630a83c25f75-mv2.png' },
+      { num: '07', zh: '三維植物表型分析', en: '3D Plant Phenotyping', slot: 'rs-3d', ph: '番茄 3D 重建圖', img: 'assets/photos/0150dc_35dc411b208f44ecba4e98aff37be991-mv2.png' },
+      { num: '08', zh: '電子鼻應用', en: 'E-Nose Application', slot: 'rs-enose', ph: '電子鼻裝置照片', img: 'assets/photos/0150dc_581c7ad867b54e07903a5d1e95cd15dc-mv2.png' },
+    ];
+
+    const WIX = 'assets/photos/';
+    const allGroups = [
+      { title: '博士班', en: 'PH.D. STUDENTS', items: [
+        { name: '林正浩', en: 'Cheng-Hao Lin', topic: 'Fluorescence Lifetime', slot: 'mb-chlin', img: WIX + '0150dc_66c3dd766d49436e886df1e36cc6cc3c-mv2.png' },
+        { name: '何佳鴻', en: 'Chia-Hong Ho', topic: 'Cell Tracking & Segmentation', slot: 'mb-chho', img: WIX + '0150dc_7963edbd762849939bd01927631fc8b7-mv2.png' },
+      ]},
+      { title: '碩士班・碩二', en: 'GRADUATE — SECOND YEAR', items: [
+        { name: '林泓佑', en: 'Hong-Yu Lin', topic: 'LEMOLish', slot: 'mb-hylin', img: WIX + '0150dc_fd7fd70a50904c3ba8bf12f96f7d02a1-mv2.png' },
+        { name: '彭子嫣', en: 'Tzu-Yen Peng', topic: 'Cell Culture', slot: 'mb-typeng', img: WIX + '0150dc_d7ed171e9f3c43a99ec2cd7c8d8cbc62-mv2.png' },
+        { name: '陳冠廷', en: 'Guan-Ting Chen', topic: '3D Reconstruction', slot: 'mb-gtchen', img: WIX + '0150dc_24bae696963c428ea10ff9cce365733e-mv2.png' },
+        { name: '陳靖濰', en: 'Ching-Wei Chen', topic: 'LEGO Microscope', slot: 'mb-cwchen', img: WIX + '0150dc_933a9af06f584db993aadcd85d3ca9a8-mv2.png' },
+      ]},
+      { title: '碩士班・碩一', en: 'GRADUATE — FIRST YEAR', items: [
+        { name: '林磊', en: 'Lei Lin', topic: 'E-Nose Application', slot: 'mb-llin', img: WIX + '0150dc_e6f29a5be04e479188c9a4a54b3b4aeb-mv2.png' },
+        { name: '何愷育', en: 'Kai-Yu He', topic: '3D Reconstruction & Gantry Robot', slot: 'mb-kyhe', img: WIX + '0150dc_7e53cc7a328244139572bd0558f55f0d-mv2.png' },
+        { name: '陳宥任', en: 'You-Jen Chen', topic: 'Fluorescence Lifetime', slot: 'mb-yjchen', img: WIX + '0150dc_1a210870b73240ff9ce4583d7e7ed495-mv2.png' },
+      ]},
+      { title: '大學部專題生', en: 'B.S. STUDENTS', items: [
+        { name: '邱禹甄', en: '', topic: '', slot: 'mb-ycchiu', img: WIX + '0150dc_397ff0d610bc4f08b08e8c6fe5c467ac-mv2.png' },
+        { name: '張曉芹', en: '', topic: '', slot: 'mb-hcchang', img: WIX + '0150dc_04a7325b63e24e08a9e3cba0d8caa5da-mv2.png' },
+        { name: '劉奕宏', en: '', topic: '', slot: 'mb-yhliu', img: WIX + '0150dc_d8f47c2ff67f4ffcb976be63f6b2245d-mv2.png' },
+        { name: '黃浩軒', en: '', topic: '', slot: 'mb-hhhuang', img: WIX + '0150dc_2df20f761a33499a9f41e8d7716a2924-mv2.png' },
+      ]},
+    ];
+    if (showGraduated) {
+      allGroups.push({ title: '畢業成員', en: 'GRADUATED MEMBERS', items: [
+        { name: '韋之皓', en: 'Jih-Hao Wei', topic: 'Cell and Beads Classification', slot: 'mb-jhwei', img: WIX + '0150dc_8589582524b54b86b6b627c3c6ed5a05-mv2.png' },
+        { name: '楊書愷', en: 'Shu-Kai Yang', topic: 'LEGO Microscope', slot: 'mb-skyang', img: WIX + '0150dc_b910e508280946f2b885daec1db5a316-mv2.png' },
+        { name: '易峻葦', en: 'Jiun-Wei Yi', topic: '3D Plant Phenotyping', slot: 'mb-jwyi', img: WIX + '0150dc_2d4383ded93b4b679f37fb764e77d74a-mv2.png' },
+        { name: '許又文', en: 'Yu-Wen Hsu', topic: 'Fluorescence Lifetime', slot: 'mb-ywhsu', img: WIX + '0150dc_a8059c9afd134a6b91836337675a1bcd-mv2.png' },
+      ]});
+    }
+
+    const courses = [
+      { num: '01', zh: '電子學與實習', en: 'Electronics and Laboratory', sem: '114-2', url: 'https://course.ntu.edu.tw/courses/114-2/40952', slot: 'cs-electronics', extra: false, extraUrl: '', img: WIX + '0150dc_e8d9bc8bb9124151a28ebaf45b1fb7f6-mv2.png' },
+      { num: '02', zh: '機電整合與系統設計', en: 'Mechatronics and System Design', sem: '114-1', url: 'https://course.ntu.edu.tw/courses/114-1/10366', slot: 'cs-mechatronics', extra: true, extraUrl: 'https://drive.google.com/drive/folders/155ZBtdiGrDPaRlmpbyhdiE6BRYe6MV05?usp=drive_link', img: WIX + '0150dc_b8ed48bf238f46c8be1f0e4beb57d0a1-mv2.jpg' },
+      { num: '03', zh: '生物光機電系統技術與應用', en: 'Bio-Mechatronics', sem: '113-2', url: 'https://course.ntu.edu.tw/courses/113-2/36514', slot: 'cs-biomech', extra: false, extraUrl: '', img: WIX + '0150dc_ae2dfdaded294693a3d2db3708127eb9-mv2.png' },
+      { num: '04', zh: '器官晶片原理應用及實作', en: 'The Principle, Application and Practice of Organ Microarrays', sem: '114-2', url: 'https://course.ntu.edu.tw/courses/114-2/38025', slot: 'cs-organchip', extra: false, extraUrl: '', img: WIX + 'nsplsh_64ff94331d8347d490592a3c314fa701-mv2.jpg' },
+    ];
+
+    const events = [
+      { sem: '114-1', label: '導生宴', slot: 'ev-01', img: WIX + '0150dc_b7b11e0f139c452883095c9e8e193998-mv2.png' },
+      { sem: '114-1', label: 'KU Professors Taipei Tour', slot: 'ev-02', img: WIX + '0150dc_3a11aa44ef0a42ea9585dc30920a291a-mv2.png' },
+      { sem: '114-1', label: 'KU Professors Lab Tour', slot: 'ev-03', img: WIX + '0150dc_649a79d9165f4f14892988359913b5ee-mv2.png' },
+      { sem: '114-1', label: "HU Prof's Taipei Tour", slot: 'ev-04', img: WIX + '0150dc_7b39e7544cb548c69ba69aa1be4f68c1-mv2.png' },
+      { sem: '114-1', label: 'Hokkaido University Professors Lab Tour', slot: 'ev-05', img: WIX + '0150dc_4f87cd7116474af596f0bf657cfecf1d-mv2.png' },
+      { sem: '114-1', label: 'SNU Professors Lab Tour', slot: 'ev-06', img: WIX + '0150dc_f77ca05f6e244bfdb0688f56a17dbe61-mv2.png' },
+      { sem: '114-1', label: 'Non-Destructive Conference Lab Tour', slot: 'ev-07', img: WIX + '0150dc_fa37a6b7ea4b4a5dad7e23aff1e45ad4-mv2.png' },
+      { sem: '114', label: '教師節', slot: 'ev-08', img: WIX + '0150dc_361b8c6ee63f4f3786dcc34245e2fbf1-mv2.png' },
+      { sem: '113-2', label: '碩士生口試', slot: 'ev-09', img: WIX + '0150dc_ed72f3b291d94cbea522534a9987cbdc-mv2.png' },
+      { sem: '113-2', label: '謝師宴', slot: 'ev-10', img: WIX + '0150dc_abd2d4a5494e4fdca3a135a8270bd9d4-mv2.png' },
+      { sem: '113-2', label: 'UIUC 研討會前合影', slot: 'ev-11', img: WIX + '0150dc_64220b2e814f44b6a68c73487dd11c46-mv2.png' },
+      { sem: '113-1', label: '導生聚', slot: 'ev-12', img: WIX + '0150dc_94f3a22bed1a413cb06e807843792594-mv2.png' },
+      { sem: '113-1', label: '碩士口試', slot: 'ev-13', img: WIX + '0150dc_a7cad689975742628576bfd34202195e-mv2.png' },
+      { sem: '113-1', label: 'Non-Destructive Lab Tour', slot: 'ev-14', img: WIX + '0150dc_ae8e19545f8b4fd8b4fcf7c023598b47-mv2.png' },
+      { sem: '113-1', label: 'Prof. Zahid Visit', slot: 'ev-15', img: WIX + '0150dc_cc2d0dfcf5c84c41a5e656c200d56610-mv2.png' },
+      { sem: '112-2', label: '碩士口試', slot: 'ev-16', img: WIX + '0150dc_e480c5aaa0a848ab913a594bc0d4f6d7-mv2.png' },
+      { sem: '112-2', label: '畢業生', slot: 'ev-17', img: WIX + '0150dc_04116ae408d043bd809d05ad7dd09477-mv2.png' },
+    ];
+
+    const pubJournals = [
+      { num: '01', text: 'K.-H. Chiang, W.-J. Chang, Y.-H. Liu, H.-L. Lin, C.-T. Lin, T.-W. Chiou, H.-M. Wu*, and Y.-C. Tung*, "Quantification of Oxygen Tension Variation in an in vitro Tumor Microenvironment Model Based on Co-Culture of Tumor Spheroid and Endothelial Cells in a Microfluidic Device," Sensors and Actuators Reports, vol. 10, 100396, 2025.', note: '通訊作者 Corresponding' },
+      { num: '02', text: 'Y.-H. Liu* and H.-M. Wu*, "Characterizing the Tissue Oxygen Tension during Neurogenesis in Human Cerebral Organoids," Bio-protocol, vol. 15, e5507, 2025.', note: '通訊作者 Corresponding' },
+      { num: '03', text: 'Y.-H. Liu, M.-T. Chung, H.-C. Lin, T.-A. Lee, Y.-J. Cheng, C.-C. Huang, H.-M. Wu*, and Y.-C. Tung*, "Shaping Early Neural Development by Elevated Tissue Oxygen Tension: Insights from Multiomic Analysis on Human Cerebral Organoids," Science Advances, vol. 11, eado1164, 2025.', note: '通訊作者 Corresponding' },
+      { num: '04', text: 'D.-M. Chang, H.-H. Hsu, P.-L. Ko, T.-H. Hsieh, H.-M. Wu*, and Y.-C. Tung*, "Rapid Time-Lapse 3D Oxygen Tension Measurement within Hydrogels Using Widefield Frequency Domain Fluorescence Lifetime Imaging Microscopy (FD-FLIM) and Image Segmentation," Analyst, vol. 149, pp. 1727–1737, 2024.', note: '通訊作者 · 封底 Back cover' },
+      { num: '05', text: 'S. Kannan, P.-L. Ko, H.-M. Wu, and Y.-C. Tung*, "Characterization of Single-Spheroid Oxygen Consumption Using a Microfluidic Platform and Fluorescence Lifetime Imaging Microscopy," Biosensors, vol. 14, p. 96, 2024.', note: '' },
+      { num: '06', text: 'H.-H. Hsu, P.-L. Ko, C.-C. Peng, Y.-J. Cheng, H.-M. Wu, and Y.-C. Tung*, "Studying Sprouting Angiogenesis Under Combination of Oxygen Gradients and Co-Culture of Fibroblasts Using Microfluidic Cell Culture Model," Materials Today Bio, vol. 21, p. 100703, 2023.', note: '' },
+      { num: '07', text: 'S. Kannan, P.-L. Ko, H.-M. Wu, and Y.-C. Tung*, "Efficient Single-Cell Oxygen Consumption Rate Characterization Based on Frequency Domain Fluorescence Lifetime Imaging Microscopy Measurement and Microfluidic Platform," Biomicrofluidics, vol. 17, p. 054105, 2023.', note: '' },
+      { num: '08', text: 'H.-H. Hsu, P.-L. Ko, H.-M. Wu, H.-C. Lin, C.-K. Wang, and Y.-C. Tung*, "Study 3D Endothelial Cell Network Formation under Various Oxygen Microenvironment and Hydrogel Composition Combinations Using Upside-Down Microfluidic Devices," Small, vol. 17, p. 2006091, 2021.', note: '封底裡 Inside back cover' },
+      { num: '09', text: 'H.-M. Wu, T.-A. Lee, P.-L. Ko, W.-H. Liao, T.-H. Hsieh, and Y.-C. Tung*, "Widefield Frequency Domain Fluorescence Lifetime Imaging Microscopy (FD-FLIM) for Accurate Measurement of Oxygen Gradients within Microfluidic Devices," Analyst, vol. 144, pp. 3494–3504, 2019.', note: '第一作者 · 封底裡 Inside back cover' },
+      { num: '10', text: 'H.-C. Shih, T.-A. Lee, H.-M. Wu, P.-L. Ko, W.-H. Liao, and Y.-C. Tung*, "Microfluidic Collective Cell Migration Assay for Study of Endothelial Cell Proliferation and Migration under Combinations of Oxygen Gradients, Tensions, and Drug Treatments," Scientific Reports, vol. 9, p. 8234, 2019.', note: '' },
+      { num: '11', text: 'C.-K. Wang*, W.-H. Liao, H.-M. Wu, and Y.-C. Tung, "One-Step Approach to Fabricating Polydimethylsiloxane Microfluidic Channels of Different Geometric Sections by Sequential Wet Etching Processes," Journal of Visualized Experiments, no. 139, e57868, 2018.', note: '' },
+      { num: '12', text: 'S. Sarkar, C.-C. Peng, C.-W. Kuo, D.-Y. Chueh, H.-M. Wu, Y.-H. Liu, P. Chen, and Y.-C. Tung*, "Study of Oxygen Tension Variation within Live Tumor Spheroids Using Microfluidic Devices and Multi-Photon Laser Scanning Microscopy," RSC Advances, vol. 8, pp. 30320–30329, 2018.', note: '' },
+      { num: '13', text: 'H.-M. Wu, T.-A. Lee, P.-L. Ko, H.-J. Chiang, C.-C. Peng, and Y.-C. Tung*, "Review of Microfluidic Cell Culture Devices for the Control of Gaseous Microenvironments in vitro," Journal of Micromechanics and Microengineering, vol. 28, p. 043001, 2018.', note: '第一作者 First author' },
+      { num: '14', text: 'C.-K. Wang*, W.-H. Liao, H.-M. Wu, Y.-H. Lo, T.-R. Lin, and Y.-C. Tung*, "Single Step Sequential Polydimethylsiloxane Wet Etching to Fabricate a Microfluidic Channel with Various Cross-Sectional Geometries," Journal of Micromechanics and Microengineering, vol. 27, p. 115003, 2017.', note: '' },
+      { num: '15', text: 'H.-M. Wu, Y.-H. Lin, T.-C. Yen, and C.-L. Hsieh*, "Nanoscopic Substructures of Raft-Mimetic Liquid-Ordered Membrane Domains Revealed by High-Speed Single-Particle Tracking," Scientific Reports, vol. 6, p. 20542, 2016.', note: '第一作者 First author' },
+    ];
+
+    const pubBooks = [
+      { num: '01', text: 'Y.-C. Tung*, H.-M. Wu, and T.-A. Lee, "CHAPTER 11 Ionic Liquid-based Physical Sensors," in Ionic Liquid Devices, Cambridge: The Royal Society of Chemistry, pp. 296–320, 2017 (ISBN: 9781788011815).', note: '' },
+    ];
+
+    const pubConfs = [
+      { num: '00', text: 'K.-T. Chen and H.-M. Wu*, "Development of a Robotic Navigation-Based Rail-Guided RGB-D System for 3D Phenotyping in Greenhouse Tomatoes," OPTICS & PHOTONICS International Congress 2026 (OPIC), Yokohama, Japan, Apr. 20–24, 2026.', note: '' },
+      { num: '00', text: 'C.-W. Chen and H.-M. Wu*, "Development of an Automated LEGO-based Inverted Fluorescence Microscope with Robust Autofocusing Capabilities," OPTICS & PHOTONICS International Congress 2026 (OPIC), Yokohama, Japan, Apr. 20–24, 2026.', note: '' },
+      { num: '00', text: 'H.-Y. Lin, J. Colombelli, B.-C. Chen*, and H.-M. Wu*, "A Modular Desktop-Class Light-Sheet Microscope for Affordable 3D Biological Imaging and STEM Education," OPTICS & PHOTONICS International Congress 2026 (OPIC), Yokohama, Japan, Apr. 20–24, 2026.', note: '' },
+      { num: '00', text: 'C.-H. Ho, Y.-C. Tung*, and H.-M. Wu*, "Automated Deep Learning Segmentation and Quantification of Tumor–Endothelial Cell Interactions in Co-Culture Systems," OPTICS & PHOTONICS International Congress 2026 (OPIC), Yokohama, Japan, Apr. 20–24, 2026.', note: '' },
+      { num: '00', text: 'C.-H. Lin and H.-M. Wu*, "Frequency-Domain Fluorescence Lifetime Imaging Microscopy for Quantifying Photosynthesis in Plant Cell Micro-phenomics," OPTICS & PHOTONICS International Congress 2026 (OPIC), Yokohama, Japan, Apr. 20–24, 2026.', note: '' },
+      { num: '01', text: 'T.-Y. Peng, C.-C. Peng, H.-M. Wu*, and Y.-C. Tung*, "Development of Field Deployable Microfluidic Cell Culture Platform Mimicking Air-Liquid Interface Blood-Air Barrier for Real-World Air Exposure Study," 2025 Annual Conference of Taiwanese Society of Biomedical Engineering (TSBME 2025), Hualien, Taiwan, Nov. 8–9, 2025.', note: '' },
+      { num: '02', text: 'C.-H. Lin and H.-M. Wu*, "A Frequency-Domain FLIM Approach to Uncover Water Stress-Induced Changes in Tomato Leaf Photosynthesis," The 11th Asian-Australasian Conference on Precision Agriculture (ACPA 11), Chiayi, Taiwan, Oct. 14–16, 2025.', note: '' },
+      { num: '03', text: 'C.-H. Lin, Y.-W. Hsu, and H.-M. Wu*, "Two-Dimensional Underwater Crop Root Oxygen Concentration Distribution Analysis Using Frequency-Domain Fluorescence Lifetime Imaging System with Oxygen Sensing Film (Planar Optode)," 2025 Conference on Biomechatronics Engineering and Agricultural Machinery, Taipei, Taiwan, Sep. 25–26, 2025.', note: '' },
+      { num: '04', text: 'C.-H. Lin, J.-W. Yi, and H.-M. Wu*, "Quantitative Phenotyping of Water-Stressed Tomato Plants Using Frequency-Domain Fluorescence Lifetime Imaging Microscope (FD-FLIM)," ASABE Annual International Meeting 2025 (ASABE 2025), Toronto, Canada, Jul. 13–16, 2025.', note: '' },
+      { num: '05', text: 'J.-W. Yi, C.-H. Lin, and H.-M. Wu*, "Three-Dimensional Image Reconstruction of RGB and Chlorophyll Fluorescence Point Cloud for Plant Phenotyping Using a Gantry Robot System," ASABE Annual International Meeting 2025 (ASABE 2025), Toronto, Canada, Jul. 13–16, 2025.', note: '' },
+      { num: '06', text: 'C.-H. Lin and H.-M. Wu*, "Early Detection of Water Stress in Plants using Frequency-Domain Fluorescence Lifetime Imaging Microscopy (FD-FLIM)," OPTICS & PHOTONICS International Congress 2025 (OPIC 2025), Yokohama, Japan, Apr. 21–25, 2025.', note: '' },
+      { num: '07', text: 'S.-K. Yang, C.-H. Ho, and H.-M. Wu*, "Development of a Multifunctional and Cost-Effective LEGO-Based Microscope for Agricultural and Biological Applications," Focus on Microscopy 2025 (FOM 2025) Conference, Taipei, Taiwan, Apr. 13–16, 2025.', note: '' },
+      { num: '08', text: 'C.-H. Ho and H.-M. Wu*, "Development of a Smart Automated Microscopic Image Tracking System for Precise Detection of Live Cells," Focus on Microscopy 2025 (FOM 2025) Conference, Taipei, Taiwan, Apr. 13–16, 2025.', note: '' },
+      { num: '09', text: 'Y.-H. Liu, M.-T. Chung, H.-C. Lin, T.-A. Lee, Y.-J. Cheng, C.-C. Huang, H.-M. Wu*, and Y.-C. Tung*, "Shaping Early Neural Development by Elevated Tissue Oxygen Tension: Insights from Multiomic Analysis in Human Cerebral Organoids," Focus on Microscopy 2025 (FOM 2025) Conference, Taipei, Taiwan, Apr. 13–16, 2025.', note: '' },
+      { num: '10', text: 'C.-H. Lin, J.-W. Yi, and H.-M. Wu*, "Monitoring Photosynthesis Efficiency during Plant Growth Using the Frequency-Domain Fluorescence Lifetime Imaging (FD-FLI) System," The 21st International Conference on Automation Technology, Taipei, Taiwan, Nov. 22–24, 2024.', note: '' },
+      { num: '11', text: 'C.-H. Lin, J.-W. Yi, and H.-M. Wu*, "Analyzing Photosynthetic Efficiency Based on Frequency-Domain Fluorescence Lifetime Imaging (FD-FLI) System," 2024 Conference on Agricultural Machinery and Bio-Mechatronics Engineering, Taichung, Taiwan, Oct. 24–25, 2024.', note: '' },
+      { num: '12', text: 'C.-H. Lin, J.-W. Yi, and H.-M. Wu*, "Detection of Water Stress in Tomato Leaves Using Frequency-Domain Chlorophyll Fluorescence Lifetime Imaging System," The 11th International Symposium on Machinery and Mechatronics for Agriculture and Biosystems Engineering (ISMAB 2024), Bali, Indonesia, Sep. 27–29, 2024.', note: '' },
+      { num: '13', text: 'J.-W. Yi, C.-H. Lin, and H.-M. Wu*, "Reconstruction of 3D Plant Model with the Fusion of RGB and Fluorescence Imaging System," The 11th International Symposium on Machinery and Mechatronics for Agriculture and Biosystems Engineering (ISMAB 2024), Bali, Indonesia, Sep. 27–29, 2024.', note: '' },
+      { num: '14', text: 'H.-M. Wu, W.-J. Chang, T.-A. Lee, and Y.-C. Tung*, "Real-Time Intracellular Oxygen Monitoring within Microfluidic Devices Using Widefield Frequency Domain Fluorescence Lifetime Imaging Microscopy (FD-FLIM)," 2023 IEEE 16th International Conference on Nano/Molecular Medicine & Engineering (NANOMED), Okinawa, Japan, Dec. 5–8, 2023.', note: '' },
+      { num: '15', text: 'H.-M. Wu and Y.-C. Tung*, "Monitoring Live Cell Oxygen Microenvironments Using Microfluidic Devices and Frequency Domain Fluorescence Lifetime Imaging Microscopy (FD-FLIM)," International Conference on Multi-scale Science and Engineering (ICMSE 2023), Okinawa, Japan, Jul. 18–20, 2023.', note: '' },
+      { num: '16', text: 'K.-H. Chiang, W.-J. Chang, H.-M. Wu, and Y.-C. Tung, "Angiogenic Blood Vessels Reconfigure/Attenuate Hypoxic Tumor Microenvironments in A Quantitative In Vitro Model," Arteriosclerosis, Thrombosis, and Vascular Biology, vol. 43, no. Suppl_1, pp. A644–A644, May 2023.', note: '' },
+      { num: '17', text: 'S. Kannan, P.-L. Ko, H.-M. Wu, and Y.-C. Tung, "Development of Microfluidic Devices for Single-Cell Oxygen Tension Analysis," the 26th International Conference on Miniaturized Systems for Chemistry and Life Sciences (µTAS), Hangzhou, China, Oct. 23–27, 2022.', note: '' },
+      { num: '18', text: 'S. Kannan, P.-L. Ko, H.-M. Wu, and Y.-C. Tung, "Efficient Single-Cell Oxygen Consumption Rate Characterization Based on Frequency Domain Fluorescence Lifetime Imaging Microscopy (FD-FLIM) Measurement and Microfluidic Platform," International Conference on Smart Sensors (ICSS 2022), Taichung, Taiwan, Oct. 22–23, 2022.', note: '' },
+      { num: '19', text: 'H.-M. Wu, W.-J. Chang, C.-C. Peng, and Y.-C. Tung, "Study Tumor Oxygen Microenvironments in vitro within Microfluidic Devices Using Frequency-Domain Fluorescence Lifetime Imaging Microscopy," Annual Meeting of Taiwanese Society of Biomedical Engineering (TSBME), Taichung, Taiwan, Nov. 19–20, 2021.', note: '' },
+      { num: '20', text: 'H.-M. Wu, W.-J. Chang, T.-A. Lee, W.-H. Liao, and Y.-C. Tung, "Intracellular Oxygen Response Monitoring within Microfluidic Devices Using Widefield Frequency Domain Fluorescence Lifetime Imaging Microscopy (FD-FLIM)," the 25th International Conference on Miniaturized Systems for Chemistry and Life Sciences (µTAS), Palm Springs, USA, Oct. 10–14, 2021.', note: 'Distinguished Oral Paper Award' },
+      { num: '21', text: 'H.-M. Wu, W.-J. Chang, T.-A. Lee, W.-H. Liao, and Y.-C. Tung, "Intracellular Oxygen Response Monitoring within Microfluidic Devices Using Widefield Frequency Domain Fluorescence Lifetime Imaging Microscopy (FD-FLIM)," International Conference on Smart Sensors (ICSS 2021), Taipei, Taiwan, Oct. 14–15, 2021.', note: '' },
+      { num: '22', text: 'P.-L. Ko, H.-H. Hsu, H.-M. Wu, and Y.-C. Tung, "Toward a Systemic in vitro Model: Microfluidic Cell Culture," Annual Meeting of Taiwan Nanomedicine Society, Taipei, Taiwan, Nov. 28, 2020.', note: '' },
+      { num: '23', text: 'H.-M. Wu, W.-J. Chang, T.-A. Lee, X. D. Wang, and Y.-C. Tung, "Intracellular Oxygen Measurement with Subcellular Resolution Using Widefield Frequency Domain Fluorescence Lifetime Imaging Microscopy (FD-FLIM)," Focus on Microscopy 2020 (FOM 2020) Conference, Osaka, Japan, Apr. 5–8, 2020.', note: 'Canceled (COVID-19)' },
+      { num: '24', text: 'D.-M. Chang, H.-H. Hsu, P.-L. Ko, H.-M. Wu, and Y.-C. Tung, "Characterization of 3D Oxygen Tension Profiles within Hydrogels Using Oxygen Sensitive Fluorescence Microbeads and Widefield Frequency Domain Fluorescence Lifetime Imaging Microscopy (FD-FLIM)," Focus on Microscopy 2020 (FOM 2020) Conference, Osaka, Japan, Apr. 5–8, 2020.', note: 'Canceled (COVID-19)' },
+      { num: '25', text: 'Y.-H. Liu, H.-M. Wu, C.-C. Huang, and Y.-C. Tung, "Long-Term Monitoring of Oxygen Tension in Living Cerebral Organoids Using Frequency Domain Fluorescence Lifetime Imaging Microscopy (FD-FLIM)," Focus on Microscopy 2020 (FOM 2020) Conference, Osaka, Japan, Apr. 5–8, 2020.', note: 'Canceled (COVID-19)' },
+      { num: '26', text: 'H.-H. Hsu, P.-L. Ko, H.-M. Wu, T.-A. Lee, H.-C. Lin, and Y.-C. Tung, "Development of a Microfluidic Device Capable of Generating Oxygen Gradients for Three-Dimensional Cell Culture in Hydrogel," the 23rd International Conference on Miniaturized Systems for Chemistry and Life Sciences (µTAS), Basel, Switzerland, Oct. 27–31, 2019.', note: '' },
+      { num: '27', text: 'H.-M. Wu, T.-A. Lee, P.-L. Ko, W.-H. Liao, and Y.-C. Tung, "Accurate Oxygen Tension Profile Measurement within Microfluidic Devices Using Frequency Domain Fluorescence Lifetime Microscopy (FD-FLIM)," the 22nd International Conference on Miniaturized Systems for Chemistry and Life Sciences (µTAS), Kaohsiung, Taiwan, Nov. 11–15, 2018.', note: '' },
+      { num: '28', text: 'H.-C. Shih, T.-A. Lee, H.-M. Wu, P.-L. Ko, and Y.-C. Tung, "Study Effects of Hypoxia-Inducible Factor (HIF) Inhibitor on Endothelial Cell Migration under Oxygen Gradients Using Microfluidic Wound Healing Assay," the 22nd International Conference on Miniaturized Systems for Chemistry and Life Sciences (µTAS), Kaohsiung, Taiwan, Nov. 11–15, 2018.', note: '' },
+      { num: '29', text: 'S. Sarkar, D.-Y. Chueh, C.-C. Peng, H.-M. Wu, P. Chen, and Y.-C. Tung, "Study of Hypoxic Cores within Live Tumor Spheroids Using Microfluidic Devices and Multi-Photon Microscopy," EMBL Conference: Microfluidics 2018, Heidelberg, Germany, Jul. 15–17, 2018.', note: '' },
+      { num: '30', text: 'Y.-C. Tung, H.-C. Shih, H.-M. Wu, and W.-H. Liao, "Study Endothelial Cell Migration under Oxygen Gradients Using Microfluidic Devices," International Joint Symposium of CEFMS-NCTU, RCAS-AS (Taiwan) and 5-Star Alliance (Japan), Hsinchu, Taiwan, May 18–20, 2018.', note: 'Invited Talk' },
+      { num: '31', text: 'H.-M. Wu, Y.-H. Lin, T.-C. Yan, and C.-L. Hsieh, "Nano-Substructures of Raft-Mimetic Liquid-Ordered Membrane Domains Revealed by High-Speed Single-Particle Tracking," Biophysical Journal, vol. 110, no. 3, p. 568a, 2016.', note: '' },
+      { num: '32', text: 'C.-Y. Chou, H.-M. Wu, Y.-H. Lin, T.-C. Yan, and C.-L. Hsieh, "Investigation of Membrane Domains and Single-Molecule Dynamics in Lipid Bilayers Using Interferometric Scattering (iSCAT) Optical Microscopy," Annual Meeting of the Physical Society of the Republic of China, Taipei, Taiwan, Jan. 25–27, 2016.', note: '' },
+      { num: '33', text: '羅光閔、郭家閎、孫士璋、吳筱梅，「FRP-金屬異質接合設計與機械強度測試」，海軍軍官學校海洋科學與應用學術研討會，2016年9月13日。', note: '' },
+      { num: '34', text: '羅光閔、李雅榮、賴建璋、孫士璋、吳筱梅，「BV規範應用於軍艦FRP上層結構設計」，海軍軍官學校海洋科學與應用學術研討會，2016年9月13日。', note: '' },
+      { num: '35', text: 'H.-M. Wu, Y.-H. Lin, T.-C. Yan, and C.-L. Hsieh, "Direct Visualization of Nanoscopic Diffusion Path of Single Lipid Molecules in Raft-Containing Bilayer Membranes with Microsecond Temporal Resolution," New Biological Frontiers Illuminated by Molecular Sensors and Actuators (Biophysical Society), Taipei, Taiwan, Jun. 28–Jul. 1, 2015.', note: '' },
+      { num: '36', text: 'H.-M. Wu, Y.-H. Lin, and C.-L. Hsieh, "High-Speed Direct Visualization of Nanoscopic Diffusion Path of Single Lipid Molecules in Raft-Containing Bilayer Membranes," Single-molecule Biophysical Chemistry Workshop, Taipei, Taiwan, Apr. 23, 2015.', note: '' },
+      { num: '37', text: 'Y.-H. Lin, H.-M. Wu, and C.-L. Hsieh, "High-Speed Single-Particle Tracking: Application to Molecular Diffusion in Biological Membranes," Optics in the Life Sciences, no. 1, p. NM3C.4, 2015.', note: '' },
+      { num: '38', text: 'Y.-H. Lin, H.-M. Wu, and C.-L. Hsieh, "High-Speed Single-Particle Tracking Reveals Lipid Dynamics in Heterogeneous Raft-Containing Membranes," Biophysical Journal, vol. 108, no. 2, p. 79a, 2015.', note: '' },
+      { num: '39', text: 'H.-M. Wu, A. Tokranov, X. Xiao, Y. Qi, M. W. Verbrugge, B. W. Sheldon, and K.-S. Kim, "Characterization of Interfacial Sliding Properties at Amorphous Si/Cu Interface due to Li-ion Intercalation by Using Self-Adjusting Liquid Linnik Interferometer," 17th U.S. National Congress on Theoretical and Applied Mechanics, East Lansing, MI, Jun. 15–20, 2014.', note: '' },
+      { num: '40', text: 'H.-M. Wu, J. W. Yi, M.-W. Moon, and K.-S. Kim, "Nanobearings in Nature," Future Directions in Mechanics Research, NSF Workshop and Symposium in honor of Professor L. B. Freund, Providence, RI, Jun. 1–3, 2011.', note: '' },
+      { num: '41', text: 'C.-K. Wang, L.-J. Leu, and H.-M. Wu, "Application of FE package ABAQUS for Evolutionary Structural Optimization," The 20th KKCNN Symposium on Civil Engineering, Jeju, South Korea, Oct. 4–6, 2007.', note: '' },
+    ];
+
+    const mkImg = (src, alt, style) => src ? React.createElement('img', { src, alt, loading: 'lazy', style }) : null;
+    const researchTopicsEl = researchTopics.map(r => ({
+      ...r,
+      hasImg: !!r.img, noImg: !r.img,
+      imgEl: mkImg(r.img, r.en, { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }),
+    }));
+    const avatarStyle = { width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px', display: 'block' };
+    const memberGroups = allGroups.map(g => ({
+      ...g,
+      items: g.items.map(m => ({
+        ...m,
+        role: g.title,
+        onClick: () => this.goMember(m.slot),
+        imgEl: mkImg(m.img, m.name, avatarStyle),
+      })),
+    }));
+    const flatMembers = [];
+    memberGroups.forEach(g => g.items.forEach(m => flatMembers.push(m)));
+    const cm = flatMembers.find(m => m.slot === this.state.selectedMember) || flatMembers[0] || {};
+    const currentMember = {
+      name: cm.name || '', en: cm.en || '', topic: cm.topic || '', role: cm.role || '',
+      imgEl: mkImg(cm.img, cm.name, { width: '100%', height: 'auto', borderRadius: '12px', display: 'block' }),
+    };
+    const eventsEl = events.map(e => ({ ...e, imgEl: mkImg(e.img, e.label, { width: '100%', height: 'auto', display: 'block' }) }));
+    const coursesEl = courses.map(c => ({ ...c, imgEl: mkImg(c.img, c.zh, { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }) }));
+    const homeSlidesEl = homeSlides.map(s => ({ ...s, imgEl: mkImg(s.img, s.cap, { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }) }));
+
+    return {
+      navItems, timeline, researchTopics: researchTopicsEl, memberGroups, courses: coursesEl, events: eventsEl,
+      pubJournals, pubBooks,
+      pubConfs: pubConfs.map((p, i) => ({ ...p, num: String(i + 1).padStart(2, '0') })),
+      isHome: page === 'home', isProf: page === 'prof', isResearch: page === 'research',
+      isMembers: page === 'members', isCourses: page === 'courses', isMember: page === 'member',
+      currentMember,
+      goMemberBack: () => this.go('members'),
+      isPhotos: page === 'photos', isContact: page === 'contact', isPubs: page === 'pubs',
+      goHome: () => this.go('home'),
+      goContact: () => this.go('contact'),
+      goResearch: () => this.go('research'),
+      goPhotos: () => this.go('photos'),
+      goMembers: () => this.go('members'),
+      goProf: () => this.go('prof'),
+      goPubs: () => this.go('pubs'),
+      homeSlides: homeSlidesEl, slideIdx, slideShift, dots,
+      prevSlide: () => this.moveSlide(-1),
+      nextSlide: () => this.moveSlide(1),
+    };
+  }
+}
+</script>
+</body>
+</html>
